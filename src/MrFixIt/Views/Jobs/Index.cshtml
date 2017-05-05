@@ -61,13 +61,13 @@
                 url: '@Url.Action("Claim", "Jobs")',
                 success: function (result) {
                     console.log(result);
-                    $("#" + result.jobId).parent().prev().text(result.worker.firstName);
+                    $("#" + result.jobId).parent().prev().prev().text(result.worker.firstName);
                     $("#" + result.jobId).parent().empty().append("<button id=" + result.jobId + " class='btn btn-success btn-xs finish'><span class='glyphicon glyphicon-plus'></span> Finish</button>");
                 }
             });
         });
 
-        $('.finish').click(function () {
+        $('.action-row').on('click', '.finish', function () {
             var clickedId = this.id
             console.log(clickedId);
             $.ajax({
