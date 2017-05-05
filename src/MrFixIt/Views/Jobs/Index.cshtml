@@ -1,7 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model IEnumerable<MrFixIt.Models.Job>
 <div class="text-center">
@@ -27,7 +25,7 @@
                 <td>@job.Title</td>
                 @if(job.Worker == null)
                 {
-                    <td>Unclaimed</td>
+                    <td class="name">Unclaimed</td>
 
                 }
                 else
@@ -38,12 +36,12 @@
                 <td>@job.Description</td>
                 @if(job.Worker == null)
                 {
-                    <td class="text-center"><a class="'btn btn-info btn-xs" href="#"><span class="glyphicon glyphicon-ok"></span> Claim</a></td>
+                    <td class="text-center action-row"><button id="@job.JobId" class="btn btn-info btn-xs claim" ><span class="glyphicon glyphicon-ok"></span> Claim</button></td>
 
                 }
                 else
                 {
-                    <td class="text-center"><a class="'btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-plus"></span> Finish</a></td>
+                    <td class="text-center action-row"><button id="@job.JobId" class="btn btn-success btn-xs finish" ><span class="glyphicon glyphicon-plus"></span> Finish</button></td>
 
                 }
             </tr>
@@ -51,4 +49,24 @@
         }
     </table>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.claim').click(function () {
+            var clickedId = this.id
+            console.log(clickedId);
+            $.ajax({
+                type: 'POST',
+                data: { jobId: 3 },
+                dataType: 'json',
+                url: '@Url.Action("Claim", "Jobs")',
+                success: function (result) {
+                    console.log(result);
+                    $(".name").text(result.worker.firstName);
+                    $(".action-row").empty().append("<button id=" + result.jobId + " class='btn btn-success btn-xs finish'><span class='glyphicon glyphicon-plus'></span> Finish</button>");
+                }
+            });
+        });
+    });
+</script>
 

@@ -225,5 +225,6 @@ C:\Users\nmead\Desktop\apps\MrFixIt-dotnet\src\MrFixIt\Models\ApplicationUser.cs
 C:\Users\nmead\Desktop\apps\MrFixIt-dotnet\src\MrFixIt\Models\Job.cs
 C:\Users\nmead\Desktop\apps\MrFixIt-dotnet\src\MrFixIt\Models\MrFixItContext.cs
 C:\Users\nmead\Desktop\apps\MrFixIt-dotnet\src\MrFixIt\Models\Worker.cs
+C:\Users\nmead\Desktop\apps\MrFixIt-dotnet\src\MrFixIt\ViewModels\JobViewModel.cs
 C:\Users\nmead\Desktop\apps\MrFixIt-dotnet\src\MrFixIt\ViewModels\LoginViewModel.cs
 C:\Users\nmead\Desktop\apps\MrFixIt-dotnet\src\MrFixIt\ViewModels\RegisterViewModel.cs
