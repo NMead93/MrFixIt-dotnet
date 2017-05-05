@@ -7,22 +7,54 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+    <h3><h4>Hello Worker @Model.FirstName @Model.LastName. You are Logged In</h4></h3>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Current Jobs</h3>
+        </div>
+        <ul class="list-group">
+        @{ 
+            int i = 0;
+            foreach (var job in Model.Jobs)
+            {
+                i++;
+                var classId = "detail-" + i;
+                var dropdownId = "dropdown-detail-" + i;
+                <li class="list-group-item">
+                    <div class="row toggle" id="@dropdownId" data-toggle="@classId">
+                        <div class="col-xs-10">
+                            @job.Title
+                        </div>
+                        <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+                    </div>
+                    <div id="@classId">
+                        <hr></hr>
+                        <div class="container">
+                            <div class="fluid-row">
+                                <div class="col-xs-1">
+                                    Description:
+                                </div>
+                                <div class="col-xs-5">
+                                    @job.Description
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
 
-    <div class="text-center">
-        <h4>Hello Worker @Model.FirstName @Model.LastName. You are Logged In</h4>
-        <h3>Your Current Jobs:</h3>
-        @foreach (var Job in Model.Jobs)
-        {
-            <h5>@Job.Title</h5>
-
         }
-        @if (Model.Avaliable)
-        {
-            <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
-        }
-        else
-        {
-            <p>You are already assigned to a job.</p>
-        }
+        </ul>
     </div>
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[id^=detail-]').hide();
+        $('.toggle').click(function () {
+            $input = $(this);
+            $target = $('#' + $input.attr('data-toggle'));
+            $target.slideToggle();
+        });
+    });
+</script>
