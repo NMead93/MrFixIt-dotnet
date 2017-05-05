@@ -57,13 +57,28 @@
             console.log(clickedId);
             $.ajax({
                 type: 'POST',
-                data: { jobId: 3 },
+                data: { jobId: clickedId },
                 dataType: 'json',
                 url: '@Url.Action("Claim", "Jobs")',
                 success: function (result) {
                     console.log(result);
                     $(".name").text(result.worker.firstName);
                     $(".action-row").empty().append("<button id=" + result.jobId + " class='btn btn-success btn-xs finish'><span class='glyphicon glyphicon-plus'></span> Finish</button>");
+                }
+            });
+        });
+
+        $('.finish').click(function () {
+            var clickedId = this.id
+            console.log(clickedId);
+            $.ajax({
+                type: 'POST',
+                data: { jobId: clickedId },
+                dataType: 'json',
+                url: '@Url.Action("Finish", "Jobs")',
+                success: function (result) {
+                    console.log(result);
+                    $("#" + result.jobId).parents("tr").remove();
                 }
             });
         });
