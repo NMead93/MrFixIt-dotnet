@@ -4,14 +4,13 @@
 @model IEnumerable<MrFixIt.Models.Job>
 <div class="text-center">
     <h3>Our Current Jobs</h3>
-    @Html.ActionLink("Add a new job", "Create")
 </div>
 
 
 <div class="row col-md-6 col-md-offset-2 custyle">
     <table class="table table-striped custab">
         <thead>
-            <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+            <a href="/Jobs/Create" class="btn btn-primary btn-xs pull-right"><b>+</b> Add New Job</a>
             <tr>
                 <th>Title</th>
                 <th>Current Worker</th>
@@ -25,7 +24,7 @@
                 <td>@job.Title</td>
                 @if(job.Worker == null)
                 {
-                    <td class="name">Unclaimed</td>
+                    <td>Unclaimed</td>
 
                 }
                 else
@@ -62,8 +61,8 @@
                 url: '@Url.Action("Claim", "Jobs")',
                 success: function (result) {
                     console.log(result);
-                    $(".name").text(result.worker.firstName);
-                    $(".action-row").empty().append("<button id=" + result.jobId + " class='btn btn-success btn-xs finish'><span class='glyphicon glyphicon-plus'></span> Finish</button>");
+                    $("#" + result.jobId).parent().prev().text(result.worker.firstName);
+                    $("#" + result.jobId).parent().empty().append("<button id=" + result.jobId + " class='btn btn-success btn-xs finish'><span class='glyphicon glyphicon-plus'></span> Finish</button>");
                 }
             });
         });
