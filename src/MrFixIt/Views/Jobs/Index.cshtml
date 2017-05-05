@@ -3,6 +3,7 @@
 *@
 @{
 }
+@model MrFixIt.Models.Job
 <div class="text-center">
     <h3>Our Current Jobs</h3>
     @Html.ActionLink("Add a new job", "Create")
@@ -16,12 +17,12 @@
         </ul>
         @if (Job.Worker == null)
         {
-        <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
+            <button id="@Model.JobId" class="claim" type="button">Work on this Job</button>
         }
         else
         {
             <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
-
+            <button id="@Job.JobId"
         }
     </ul>
 
