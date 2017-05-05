@@ -42,7 +42,10 @@
                     }
                     else
                     {
-                        <td class="text-center action-row"><button id="@job.JobId" class="btn btn-success btn-xs finish" ><span class="glyphicon glyphicon-plus"></span> Finish</button></td>
+                        @if (User.Identity.Name == job.Worker.UserName)
+                        {
+                            <td class="text-center action-row"><button id="@job.JobId" class="btn btn-success btn-xs finish" ><span class="glyphicon glyphicon-plus"></span> Finish</button></td>
+                        }
 
                     }
                 }
