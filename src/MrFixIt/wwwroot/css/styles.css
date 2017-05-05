@@ -14,3 +14,22 @@
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
     }
+
+.parallax {
+    /* The image used */
+    background-image: url("http://sirseni.com/demo/huma/images/slider/slider1.jpg");
+    /* Set a specific height */
+    min-height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax-body {
+    height: 300px;
+    background-color: #53A2BE;
+    color: #132E32;
+}
