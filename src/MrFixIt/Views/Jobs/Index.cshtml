@@ -33,15 +33,18 @@
 
                 }
                 <td>@job.Description</td>
-                @if(job.Worker == null)
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <td class="text-center action-row"><button id="@job.JobId" class="btn btn-info btn-xs claim" ><span class="glyphicon glyphicon-ok"></span> Claim</button></td>
+                    @if(job.Worker == null)
+                    {
+                        <td class="text-center action-row"><button id="@job.JobId" class="btn btn-info btn-xs claim" ><span class="glyphicon glyphicon-ok"></span> Claim</button></td>
 
-                }
-                else
-                {
-                    <td class="text-center action-row"><button id="@job.JobId" class="btn btn-success btn-xs finish" ><span class="glyphicon glyphicon-plus"></span> Finish</button></td>
+                    }
+                    else
+                    {
+                        <td class="text-center action-row"><button id="@job.JobId" class="btn btn-success btn-xs finish" ><span class="glyphicon glyphicon-plus"></span> Finish</button></td>
 
+                    }
                 }
             </tr>
 
