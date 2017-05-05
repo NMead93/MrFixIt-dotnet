@@ -1,10 +1,11 @@
 ﻿$(document).ready(function () {
-    $('.hello-ajax').click(function () {
+    $('.claim').click(function () {
         $.ajax({
-            type: 'GET',
-            url: '@Url.Action("HelloAjax")',
+            type: 'POST',
+            data: { jobId: this.id },
+            url: '@Url.Action("Claim", "Jobs")',
             success: function (result) {
-                $('#result1').html(result);
+                $()
             }
         });
     });

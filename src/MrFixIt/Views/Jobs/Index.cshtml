@@ -3,30 +3,52 @@
 *@
 @{
 }
-@model MrFixIt.Models.Job
+@model IEnumerable<MrFixIt.Models.Job>
 <div class="text-center">
     <h3>Our Current Jobs</h3>
     @Html.ActionLink("Add a new job", "Create")
 </div>
-@foreach (var Job in Model)
-{
-    <ul>
-        <li>@Job.Title</li>
-        <ul>
-            <li>@Job.Description</li>
-        </ul>
-        @if (Job.Worker == null)
-        {
-            <button id="@Model.JobId" class="claim" type="button">Work on this Job</button>
-        }
-        else
-        {
-            <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
-            <button id="@Job.JobId">Mark as Finished</button>
-        }
-    </ul>
 
 
-    <hr />
-}
+<div class="row col-md-6 col-md-offset-2 custyle">
+    <table class="table table-striped custab">
+        <thead>
+            <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+            <tr>
+                <th>Title</th>
+                <th>Current Worker</th>
+                <th>Description</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        @foreach(var job in Model)
+        {
+            <tr>
+                <td>@job.Title</td>
+                @if(job.Worker == null)
+                {
+                    <td>Unclaimed</td>
+
+                }
+                else
+                {
+                    <td>@job.Worker.FirstName</td>
+
+                }
+                <td>@job.Description</td>
+                @if(job.Worker == null)
+                {
+                    <td class="text-center"><a class="'btn btn-info btn-xs" href="#"><span class="glyphicon glyphicon-ok"></span> Claim</a></td>
+
+                }
+                else
+                {
+                    <td class="text-center"><a class="'btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-plus"></span> Finish</a></td>
+
+                }
+            </tr>
+
+        }
+    </table>
+</div>
 
